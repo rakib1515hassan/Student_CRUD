@@ -1,0 +1,69 @@
+{% extends "std/base.html" %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<h1 class="text-center my-3">Student Management</h1>
+<h2 class="text-center my-3">List of Student</h2>
+
+<style>
+    img{
+     width:80px;
+     hight:100px;
+     border-radius: 100%;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>SNO</th>
+                                <th>Roll</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Department</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in std %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{s.roll}}</td>
+                                    <td>{{s.full_name}}</td>
+                                    <td>
+                                        <div class="images">
+                                            <img src="{{ s.image.url }}" alt="img">
+                                        </div>
+                                    </td>
+                                    <td>{{s.department}}</td>
+                                    <td>{{s.email}}</td>
+                                    <td>{{s.address}}</td>
+                                    <td>{{s.phone}}</td>
+                                    <td>
+                                        <a href="/std/delete-std/{{s.id}}" class="btn btn-danger md-sm">Delete</a>
+                                        <a href="/std/update-std/{{s.id}}" class="btn btn-success md-sm">Update</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock body %}
